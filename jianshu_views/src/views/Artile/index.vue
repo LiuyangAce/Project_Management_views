@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+    文章的列表
+  </div>
 </template>
 
 <script>
