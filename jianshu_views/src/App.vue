@@ -5,18 +5,18 @@
 <script>
 import axios from './http/index'
 export default {
-  mounted() {
-    let option = {
-      method: 'get',
-      path: 'http://localhost:3000/users/find',
-      params: {
+  // mounted() {
+  //   let option = {
+  //     method: 'get',
+  //     path: 'http://localhost:3000/users/find',
+  //     params: {
 
-      }
-    }
-    axios(option).then(res => {
-      console.log(res);
-    })
-  }
+  //     }
+  //   }
+  //   axios(option).then(res => {
+  //     console.log(res);
+  //   })
+  // }
 }
 </script>
 
