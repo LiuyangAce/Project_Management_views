@@ -1,5 +1,6 @@
 <template>
   <el-container style="height: 100%">
+    <base-header></base-header>
     <el-header style="background-color: #b3c0d1">Header</el-header>
     <el-container>
       <el-aside width="200px" style="background-color: #d3dce6">Aside</el-aside>
@@ -31,7 +32,12 @@
 </template>
 
 <script>
-export default {}
+import BaseHeader from '@/components/base-header'
+export default {
+  components: {
+    BaseHeader
+  }
+}
 </script>
 
 <style></style>
