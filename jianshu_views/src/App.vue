@@ -5,6 +5,12 @@
 <script>
 import axios from './http/index'
 export default {
+  created() {
+    console.log('document.cookie:',document.cookie);
+    if(!document.cookie){
+      this.$router.push({path:'/login'})
+    }
+  }
   // mounted() {
   //   let option = {
   //     method: 'get',
