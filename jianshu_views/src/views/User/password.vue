@@ -3,10 +3,10 @@
     <el-row>
       <el-col :span="24">
         <el-card>
-          <div slot="header" class="clearfix" style="text-align: center">
-            <span>个人资料</span>
+          <div slot="header" class="headerCard" style="color: #27b766;">
+            <span style="">个人资料</span>
+            <span class="loginOutButton" @click="loginOutHandler">退出登录</span>
           </div>
-          <!-- v-loading="loading" -->
           <el-table
             :data="tableData"
             border
@@ -124,6 +124,7 @@
 
 <script>
 import api from '@/api'
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -144,6 +145,12 @@ export default {
   },
   mounted() {},
   methods: {
+    //退出登录
+    loginOutHandler() {
+      Cookies.remove('madpecker')
+      window.localStorage.removeItem('userInfo')
+      this.$router.push({name: 'Login'})
+    },
     getTableData() {
       this.$store.dispatch('getUserInfo')
         .finally(() => {
@@ -214,6 +221,12 @@ export default {
 </script>
 
 <style scoped>
+.loginOutButton {
+  margin-left:30px
+}
+.loginOutButton:hover {
+  cursor: pointer;
+}
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;

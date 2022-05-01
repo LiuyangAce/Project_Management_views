@@ -11,7 +11,7 @@ export default new Vuex.Store({
   },
   mutations: {
     GET_USER_INFO: (state) => {
-      return sessionStorage.getItem('userInfo')
+      return localStorage.getItem('userInfo')
     },
     SET_USER_INFO: (state, userInfo) => {
       state.userInfo = userInfo
@@ -23,7 +23,7 @@ export default new Vuex.Store({
         let option = {
           ...api.GET_USER_INFO,
           params: {
-            _id: JSON.parse(window.sessionStorage.getItem('userInfo')).userInfo
+            _id: JSON.parse(window.localStorage.getItem('userInfo')).userInfo
               ._id,
           },
         }
@@ -43,8 +43,8 @@ export default new Vuex.Store({
   modules: {},
   plugins: [
     createPersistedState({
-      // 存储方式：localStorage、sessionStorage、cookies
-      storage: window.sessionStorage,
+      // 存储方式：localStorage、localStorage、cookies
+      storage: window.localStorage,
       // 存储的 key 的key值
       key: 'userInfo',
       render(state) {
