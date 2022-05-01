@@ -1,74 +1,70 @@
 <template>
   <div class="base-header">
     <div class="base-header_prefix">
-      <img class="logoImg" src="@/assets/MadPecker.png" alt="MadPecker图片">
+      <img class="logoImg" src="@/assets/MadPecker.png" alt="MadPecker图片" />
     </div>
     <div class="base-header_container">
       <slot name="content">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="1">
-            敏捷面板
-          </el-menu-item>
-          <el-menu-item index="2">
-            系统设置
-          </el-menu-item>
+        <el-menu
+          :default-active="activeIndex"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          router
+        >
+          <el-menu-item index="/user"> 个人资料 </el-menu-item>
+          <el-menu-item index="/defect"> 系统设置 </el-menu-item>
         </el-menu>
       </slot>
     </div>
-    <div class="base-header_suffix">
-      
-    </div>
+    <div class="base-header_suffix"></div>
   </div>
 </template>
-
-    // <div>
-    //   <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-    // </div>
-    // <div>
-    //   <el-avatar> user </el-avatar>
-    // </div>
 <script>
 export default {
   data() {
     return {
-      activeIndex: '1',
-      activeIndex2: '1'
-    };
+      activeIndex: this.$route.path,
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
+      this.activeIndex = key
+    },
+  },
 }
 </script>
 <style scoped>
-  .base-header {
-    height: 64px;
-    display: flex;
-    box-shadow: 0 2px 8px 0 #dcdfe6;
-  }
-  .base-header_prefix {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .base-header_container {
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .base-header_suffix {
-    width: 20%;
-  }
-  .logoImg {
-    width: 140px;
-    height: 36px;
-  }
-  .el-menu-item {
-    font-weight: 700;
-    color: #027aff;
-  }
+.base-header {
+  height: 64px;
+  display: flex;
+  box-shadow: 0 2px 8px 0 #dcdfe6;
+}
+.base-header_prefix {
+  width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+  align-items: center;
+}
+.base-header_container {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.base-header_suffix {
+  width: 20%;
+}
+.logoImg {
+  width: 140px;
+  height: 36px;
+}
+.el-menu-item {
+  font-weight: 700;
+}
+.el-menu--horizontal>.el-menu-item.is-active {
+  color: #27b766;
+  border-bottom: 2px solid #27b766;
+}
 </style>

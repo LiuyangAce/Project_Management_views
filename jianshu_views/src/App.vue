@@ -1,28 +1,26 @@
 <template>
-  <router-view></router-view>
+  <component :is="layout">
+    <router-view></router-view>
+  </component>
 </template>
 
 <script>
-import axios from './http/index'
+import Cookies from 'js-cookie'
 export default {
   created() {
-    console.log('document.cookie:',document.cookie);
-    if(!document.cookie){
-      this.$router.push({path:'/login'})
+    if (Cookies.get('madpecker')) {
+      this.$router.push({ name: 'User' })
+    }else {
+      this.$router.push({ name: 'Login' })
+    }
+  },
+  mounted() {
+  },
+  computed: {
+    layout() {
+      return this.$route.meta.layout
     }
   }
-  // mounted() {
-  //   let option = {
-  //     method: 'get',
-  //     path: 'http://localhost:3000/users/find',
-  //     params: {
-
-  //     }
-  //   }
-  //   axios(option).then(res => {
-  //     console.log(res);
-  //   })
-  // }
 }
 </script>
 

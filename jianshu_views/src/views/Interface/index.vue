@@ -1,6 +1,6 @@
 <template>
   <div>
-    粉丝列表
+    接口管理
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    点赞管理
+    缺陷管理
   </div>
 </template>
 

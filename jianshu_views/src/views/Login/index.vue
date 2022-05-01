@@ -9,12 +9,12 @@
       />
       <el-tab-pane label="登录" name="login" class="login">
         <el-card class="loginCard">
-          <el-form ref="form123" :model="form">
+          <el-form ref="formLogin" :model="formLogin">
             <el-form-item label="用户名:">
-              <el-input v-model="form.username"></el-input>
+              <el-input v-model="formLogin.username"></el-input>
             </el-form-item>
             <el-form-item label="密码:">
-              <el-input v-model="form.pwd"></el-input>
+              <el-input v-model="formLogin.pwd"></el-input>
             </el-form-item>
             <el-button @click="loginHandler">登录</el-button>
           </el-form>
@@ -22,15 +22,15 @@
       </el-tab-pane>
       <el-tab-pane label="注册" name="reg">
         <el-card class="regCard">
-          <el-form ref="form" :model="form" :rules="rules">
+          <el-form ref="formReg" :model="formReg" :rules="rules">
             <el-form-item label="用户名:" prop="username">
-              <el-input v-model="form.username"></el-input>
+              <el-input v-model="formReg.username"></el-input>
             </el-form-item>
             <el-form-item label="密码:" prop="pwd">
-              <el-input v-model="form.pwd"></el-input>
+              <el-input v-model="formReg.pwd"></el-input>
             </el-form-item>
             <el-form-item label="确认密码:" prop="checkPwd">
-              <el-input v-model="form.checkPwd"></el-input>
+              <el-input v-model="formReg.checkPwd"></el-input>
             </el-form-item>
             <el-button @click="regHandler">注册</el-button>
           </el-form>
@@ -41,15 +41,16 @@
 </template>
 
 <script>
-import axios from '@/http/index.js'
+import Cookies from 'js-cookie'
+import api from '@/api/index.js'
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
       } else {
-        if (this.form.checkPwd !== '') {
-          this.$refs.form.validateField('checkPwd')
+        if (this.formReg.checkPwd !== '') {
+          this.$refs.formReg.validateField('checkPwd')
         }
         callback()
       }
@@ -57,17 +58,21 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'))
-      } else if (value !== this.form.pwd) {
+      } else if (value !== this.formReg.pwd) {
         callback(new Error('两次输入密码不一致!'))
       } else {
         callback()
       }
     }
     return {
-      form: {
+      formLogin: {
         username: null,
         pwd: null,
-        checkPwd: null
+      },
+      formReg: {
+        username: null,
+        pwd: null,
+        checkPwd: null,
       },
       activeName: 'login',
       rules: {
@@ -76,34 +81,52 @@ export default {
       },
     }
   },
-  created() {
-    // console.log(this.$route)
-  },
+  created() {},
   methods: {
-    handleClick(tab, event) {
-      // console.log(tab, event)
-    },
+    handleClick(tab, event) {},
     loginHandler() {
-      console.log(this.form)
-      let option = {
-        method: 'post',
-        path: 'http://localhost:3000/users/login',
+      const option = {
+        ...api.USERS_LOGIN,
         params: {
-          ...this.form,
+          ...this.formLogin,
         },
       }
       this.$http(option)
         .then((res) => {
-          console.log('请求成功',res);
-          this.$router.push({ name: 'Home' })
+          console.log('请求成功', res)
+          this.$message({
+            message: '登陆成功',
+            type: 'success',
+          })
+          this.formLogin = {}
+          Cookies.set('madpecker', res.token, { expires: 3 })
+          this.$store.commit('SET_USER_INFO', { ...res.result })
+          this.$router.push({ name: 'User' })
         })
         .catch((err) => {
-          console.log('请求失败');
-          console.log(err)
+          console.error('请求失败',err)
         })
     },
     regHandler() {
-      console.log('regHandler....')
+      const option = {
+        ...api.USERS_REG,
+        params: {
+          ...this.formReg,
+        },
+      }
+      this.$http(option)
+        .then((res) => {
+          console.log('请求成功', res)
+          this.$message({
+            message: '注册成功',
+            type: 'success',
+          })
+          this.activeName = 'login'
+          this.formReg = {}
+        })
+        .catch((err) => {
+          console.error('请求失败',err)
+        })
     },
   },
 }
@@ -123,7 +146,8 @@ export default {
   height: 100%;
   width: 100%;
 }
-.loginCard ,.regCard {
+.loginCard,
+.regCard {
   width: 420px;
   height: 100%;
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    评论管理
+    敏捷面板
   </div>
 </template>
 

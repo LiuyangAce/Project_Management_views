@@ -1,9 +1,10 @@
 <template>
-  <div class="home">
-    <div>这是主页面</div>
+<!-- 个人资料 -->
+  <div class="defaultLayout">
+    <base-header></base-header>
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
 import BaseHeader from '@/components/base-header'
 export default {
@@ -12,7 +13,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>

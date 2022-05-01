@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 let instance = axios.create({
   baseURL: 'http://localhost:3000',
@@ -10,6 +11,8 @@ let instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     //请求拦截要处理的内容
+    if(Cookies.get('madpecker'))
+      config.headers.Authorization = "Bearer " + Cookies.get('madpecker')
     return config
   },
   (err) => {
@@ -25,7 +28,6 @@ instance.interceptors.response.use(
       case 200:
         return Promise.resolve(res.data)
       case 300:
-      
         return Promise.reject(res.data)
       default:
         break;

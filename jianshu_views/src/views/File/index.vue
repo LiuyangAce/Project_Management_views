@@ -1,6 +1,6 @@
 <template>
   <div>
-    文章的列表
+    文档管理
   </div>
 </template>
 
