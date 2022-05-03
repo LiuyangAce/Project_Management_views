@@ -3,9 +3,11 @@
     <el-row>
       <el-col :span="24">
         <el-card>
-          <div slot="header" class="headerCard" style="color: #27b766;">
+          <div slot="header" class="headerCard" style="color: #27b766">
             <span style="">个人资料</span>
-            <span class="loginOutButton" @click="loginOutHandler">退出登录</span>
+            <span class="loginOutButton" @click="loginOutHandler"
+              >退出登录</span
+            >
           </div>
           <el-table
             :data="tableData"
@@ -149,14 +151,13 @@ export default {
     loginOutHandler() {
       Cookies.remove('madpecker')
       window.localStorage.removeItem('userInfo')
-      this.$router.push({name: 'Login'})
+      this.$router.push({ name: 'Login' })
     },
     getTableData() {
-      this.$store.dispatch('getUserInfo')
-        .finally(() => {
-          this.tableData = []
-          this.tableData.push(this.$store.state.userInfo)
-        })
+      this.$store.dispatch('getUserInfo').finally(() => {
+        this.tableData = []
+        this.tableData.push(this.$store.state.userInfo)
+      })
     },
     upPwd() {
       if (this.new_pwd1 === this.new_pwd2) {
@@ -174,13 +175,17 @@ export default {
             this.$message({
               message: '修改成功',
               type: 'success',
+              duration: 500,
             })
           })
           .catch((err) => {
             console.error('请求失败', err)
           })
       } else {
-        this.$message.error('两次输入密码不一致')
+        this.$message.error({
+          message: '两次输入密码不一致',
+          duration: 500
+        })
       }
     },
     showDialogForm(row) {
@@ -201,13 +206,14 @@ export default {
           ...this.form,
         },
       }
-      console.log(this.form)
+      console.log(option)
       this.$http(option)
         .then((res) => {
           console.log('修改个人信息成功', res)
           this.$message({
             message: '修改成功',
             type: 'success',
+            duration: 500,
           })
         })
         .catch((err) => {
@@ -222,7 +228,7 @@ export default {
 
 <style scoped>
 .loginOutButton {
-  margin-left:30px
+  margin-left: 30px;
 }
 .loginOutButton:hover {
   cursor: pointer;

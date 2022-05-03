@@ -19,7 +19,7 @@ export default new Vuex.Store({
   },
   actions: {
     getUserInfo({ commit }) {
-      return new Promise((resolve,reject) => {
+      return new Promise((resolve, reject) => {
         let option = {
           ...api.GET_USER_INFO,
           params: {
@@ -27,7 +27,8 @@ export default new Vuex.Store({
               ._id,
           },
         }
-        this._vm.$http(option)
+        this._vm
+          .$http(option)
           .then((res) => {
             console.log('查询当前用户信息成功', res)
             commit('SET_USER_INFO', res.data)

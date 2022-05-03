@@ -23,5 +23,9 @@ export default {
   UPDATE_PERSONAL: {
     path: 'http://localhost:3000/users/update/personal',
     method: 'post'
+  },
+  FIND_USERS: {
+    path: 'http://localhost:3000/users/find',
+    method: 'get'
   }
 }

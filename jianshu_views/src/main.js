@@ -9,6 +9,12 @@ import { Message } from 'element-ui'
 import 'default-passive-events'
 import lodash from 'lodash'
 
+// 使用 x-table
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
+
 import ViewLayout from './layout/viewLayout.vue'
 import DefaultLayout from './layout/defaultLayout.vue'
 import EmptyLayout from './layout/emptyLayout.vue'

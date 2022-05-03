@@ -97,6 +97,7 @@ export default {
           this.$message({
             message: '登陆成功',
             type: 'success',
+            duration: 500
           })
           this.formLogin = {}
           Cookies.set('madpecker', res.token, { expires: 3 })
@@ -120,6 +121,7 @@ export default {
           this.$message({
             message: '注册成功',
             type: 'success',
+            duration: 500
           })
           this.activeName = 'login'
           this.formReg = {}
@@ -160,10 +162,10 @@ export default {
 }
 /deep/ #tab-login {
   font-size: 18px;
-  color: green;
+  color: #27b766;
 }
 /deep/ #tab-reg {
   font-size: 18px;
-  color: green;
+  color: #27b766;
 }
 </style>

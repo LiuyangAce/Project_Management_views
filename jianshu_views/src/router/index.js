@@ -34,7 +34,7 @@ const routes = [
   {
     path: '/defect',
     name: 'Defect',
-    component: () => import('@/views/Defect/index.vue'),
+    component: () => import('@/views/Defect'),
     meta: {
       title: '缺陷管理',
       layout: 'view-layout'
