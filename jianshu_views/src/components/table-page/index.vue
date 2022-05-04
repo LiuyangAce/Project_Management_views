@@ -11,7 +11,7 @@
           color: '#27b766',
         }"
         @row-dblclick="showUpdateDialogForm"
-        @row-contextmenu="delHandle"
+        @row-contextmenu="delDialog"
       >
         <el-table-column type="index" width="50"> </el-table-column>
         <!-- 双击点开抽屉 -->
@@ -21,13 +21,13 @@
           :prop="item.prop"
           :label="item.label"
           align="center"
-          :show-overflow-tooltip='true'
+          :show-overflow-tooltip="true"
         >
         </el-table-column>
       </el-table>
     </div>
     <!-- 分页 -->
-    <div class="page">
+    <div class="page" slot="main">
       <el-pagination
         :background="true"
         layout="->, total, sizes, prev, pager, next, jumper"
@@ -39,12 +39,29 @@
         @current-change="handleCurrentChange"
       />
     </div>
+    <el-dialog
+      title="是否删除接口"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <span>该操作不可逆！请谨慎操作！</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="delHandle()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import api from '@/api'
 export default {
   props: {
+    interface: {
+      type: Boolean,
+      default : false
+    },
     // 表格数据
     tableData: {
       type: Array,
@@ -74,12 +91,15 @@ export default {
   },
   data() {
     return {
-      slotList: [],
+      dialogVisible: false,
+      delRow: {},
     }
   },
   computed: {},
   watch: {},
-  created() {},
+  created() {
+    console.log(this.$parent);
+  },
   mounted() {},
   methods: {
     handleCurrentChange(val) {
@@ -92,9 +112,42 @@ export default {
       console.log('in showUpdateDialogForm', row)
       this.$emit('showUpdateDialogForm', row)
     },
-    delHandle(row) {
-      console.log('in delHandle', row)
-      this.$emit('delHandle', row)
+    delDialog(row, column, event) {
+      if (!this.interface) {
+        return false
+      }else {
+        event.preventDefault()
+        console.log('in delDialog', row)
+        this.dialogVisible = true
+        this.delRow = row
+      }
+      // this.$emit('delHandle', row)
+    },
+    delHandle() {
+      const option = {
+        ...api.INTERFACE_DEL,
+        params: {
+          ...this.delRow,
+        },
+      }
+      this.$http(option)
+        .then((res) => {
+          console.log('删除成功', res)
+          this.$message({
+            message: '删除成功',
+            type: 'success',
+            duration: 500,
+          })
+          this.dialogVisible = false
+          this.$parent.getAllInterface()
+        })
+        .catch((err) => {
+          console.log('删除失败', err)
+          this.dialogVisible = false
+        })
+    },
+    handleClose() {
+      this.dialogVisible = false
     },
   },
 }

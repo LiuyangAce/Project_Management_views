@@ -27,5 +27,10 @@ export default {
   FIND_USERS: {
     path: 'http://localhost:3000/users/find',
     method: 'get'
+  },
+  COMPONENT_USERS: {
+    path: 'http://localhost:3000/users/component',
+    method: 'get'
   }
+  
 }

@@ -4,7 +4,7 @@ export default {
     path: 'http://localhost:3000/defect/add',
     method: 'post',
   },
-  //查询所有缺陷（分页）
+  // //查询所有缺陷（分页）
   DEFECT_FINDALL: {
     path: 'http://localhost:3000/defect/findAll',
     method: 'post',
@@ -16,12 +16,20 @@ export default {
   },
   //添加缺陷
   ADD_DEFECT: {
-    path: "http://localhost:3000/defect/add",
-    method: 'post'
+    path: 'http://localhost:3000/defect/add',
+    method: 'post',
   },
   // 更新缺陷
   UPDATE_DEFECT: {
     path: 'http://localhost:3000/defect/update',
-    method: 'post'
+    method: 'post',
+  },
+  FIND_INFO: {
+    path: 'http://localhost:3000/defect/findInfo',
+    method: 'get',
+  },
+  TYPES_DEFECT: {
+    path: 'http://localhost:3000/defect/findDefectTypes',
+    method: 'get'
   }
 }

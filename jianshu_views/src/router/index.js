@@ -34,11 +34,49 @@ const routes = [
   {
     path: '/defect',
     name: 'Defect',
-    component: () => import('@/views/Defect'),
+    component: () => import('@/views/Defect/index'),
     meta: {
       title: '缺陷管理',
       layout: 'view-layout'
-    }
+    },
+    children: [
+      {
+        path: '/allDefect',
+        name: 'AllDefect',
+        component: () => import('@/views/Defect/allDefect.vue'),
+        meta: {
+          title: '所有缺陷',
+          layout: 'view-layout'
+        },
+      },
+      {
+        path: '/activeDefect',
+        name: 'ActiveDefect',
+        component: () => import('@/views/Defect/activeDefect.vue'),
+        meta: {
+          title: '活动缺陷',
+          layout: 'view-layout'
+        },
+      },
+      {
+        path: '/myDefect',
+        name: 'MyDefect',
+        component: () => import('@/views/Defect/myDefect.vue'),
+        meta: {
+          title: '我创建的',
+          layout: 'view-layout'
+        },
+      },
+      {
+        path: '/myAgent',
+        name: 'myAgent',
+        component: () => import('@/views/Defect/myAgent.vue'),
+        meta: {
+          title: '我的待办',
+          layout: 'view-layout'
+        },
+      }
+    ]
   },
   {
     path: '/test',

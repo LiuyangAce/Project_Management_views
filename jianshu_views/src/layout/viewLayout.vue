@@ -9,26 +9,36 @@
         >
           <el-menu-item index="/defect">
             <template #title>
+              <i class="el-icon-s-release"></i>
               <span>缺陷管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/test">
+         <!--  <el-submenu index="/defect">
+          <template slot="title"><i class="el-icon-s-release"></i>缺陷管理</template>
+          <el-menu-item index="/allDefect">所有缺陷</el-menu-item>
+          <el-menu-item index="/activeDefect">活动缺陷</el-menu-item>
+          <el-menu-item index="/myDefect">我创建的</el-menu-item>
+          <el-menu-item index="/myAgent">我的待办</el-menu-item>
+        </el-submenu> -->
+          <!-- <el-menu-item index="/test">
             <template #title>
               <span>测试管理</span>
             </template>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="/interface">
             <template #title>
+              <i class="el-icon-info"></i>
               <span>接口管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/file">
+          <!-- <el-menu-item index="/file">
             <template #title>
               <span>文档管理</span>
             </template>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="/panel">
             <template #title>
+              <i class="el-icon-s-marketing"></i>
               <span>敏捷面板</span>
             </template>
           </el-menu-item>

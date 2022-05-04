@@ -44,7 +44,7 @@ export default {
         },
         {
           prop: 'desc',
-          label: '缺陷描述'
+          label: '缺陷描述',
         },
         {
           prop: 'createTime',
@@ -70,7 +70,7 @@ export default {
       },
       count: null,
       form: {},
-      showDrawer: false
+      showDrawer: false,
     }
   },
   created() {
@@ -118,7 +118,7 @@ export default {
         // 传数据
         this.form = this.$lodash.cloneDeep(row)
       })
-    }
+    },
   },
 }
 </script>
