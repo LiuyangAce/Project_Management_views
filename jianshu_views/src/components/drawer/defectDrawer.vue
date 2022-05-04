@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-    title="详细信息"
+    title="编辑缺陷"
     :before-close="handleClose"
     :visible.sync="dialog"
     direction="rtl"
@@ -31,6 +31,9 @@
               :key="item._id"
             ></el-option>
           </el-select>
+        </el-form-item>
+        <el-form-item label="缺陷描述">
+          <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item label="状态:">
           <el-tooltip

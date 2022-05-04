@@ -21,6 +21,7 @@
           :prop="item.prop"
           :label="item.label"
           align="center"
+          :show-overflow-tooltip='true'
         >
         </el-table-column>
       </el-table>

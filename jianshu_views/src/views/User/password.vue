@@ -19,6 +19,7 @@
             <el-table-column prop="sex" label="性别"> </el-table-column>
             <el-table-column prop="phone" label="电话"> </el-table-column>
             <el-table-column prop="email" label="邮箱"> </el-table-column>
+            <el-table-column prop="type" label="角色"> </el-table-column>
           </el-table>
           <el-dialog
             title="修改个人信息"
@@ -61,22 +62,6 @@
                 <div slot="header" class="clearfix" style="text-align: center">
                   <span>修改头像</span>
                 </div>
-                <!-- <div v-if="tableData[0].avatar">
-                  <img :src="imgSrc" alt="" style="width: 80px; height: 80px" />
-                </div>
-                <div v-else>
-                  <img :src="imgSrc" alt="" style="width: 80px; height: 80px" />
-                  <el-upload
-                    :action="action"
-                    :headers="headers"
-                    :file-list="fileList"
-                    name="myfile"
-                    :on-success="successHandler"
-                    :show-file-list="false"
-                  >
-                    <el-button size="small" type="primary">点击上传</el-button>
-                  </el-upload>
-                </div> -->
               </el-card>
             </el-col>
             <el-col :span="12">
@@ -184,7 +169,7 @@ export default {
       } else {
         this.$message.error({
           message: '两次输入密码不一致',
-          duration: 500
+          duration: 500,
         })
       }
     },
@@ -264,3 +249,34 @@ export default {
   display: block;
 }
 </style>
+
+<style>
+.el-button--primary {
+  background-color: #e9f7ec;
+  border-color: #27b766;
+  color: #27b766;
+}
+.el-button--primary:focus,
+.el-button--primary:hover {
+  background-color: #e9f7ec;
+  border-color: #27b766;
+  color: #27b766;
+}
+</style>
+
+<!-- <div v-if="tableData[0].avatar">
+                  <img :src="imgSrc" alt="" style="width: 80px; height: 80px" />
+                </div>
+                <div v-else>
+                  <img :src="imgSrc" alt="" style="width: 80px; height: 80px" />
+                  <el-upload
+                    :action="action"
+                    :headers="headers"
+                    :file-list="fileList"
+                    name="myfile"
+                    :on-success="successHandler"
+                    :show-file-list="false"
+                  >
+                    <el-button size="small" type="primary">点击上传</el-button>
+                  </el-upload>
+                </div> -->

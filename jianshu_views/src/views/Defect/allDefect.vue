@@ -43,6 +43,10 @@ export default {
           label: '执行人',
         },
         {
+          prop: 'desc',
+          label: '缺陷描述'
+        },
+        {
           prop: 'createTime',
           label: '创建时间',
         },

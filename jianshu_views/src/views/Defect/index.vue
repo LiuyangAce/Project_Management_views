@@ -1,7 +1,7 @@
 <template>
   <div class="defectView">
     <!-- button -->
-    <el-button class="addDefectButton" @click="visibleHandle">
+    <el-button class="addDefectButton" @click="visibleHandle" :disabled="!addButtonAbled">
       添加缺陷
     </el-button>
     <!-- dialog -->
@@ -98,6 +98,11 @@ export default {
       },
       ownerList: [],
       dialogFormVisible: false,
+    }
+  },
+  computed: {
+    addButtonAbled: function () {
+      return JSON.parse(window.localStorage.getItem('userInfo')).userInfo.type === '测试'
     }
   },
   created() {
