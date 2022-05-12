@@ -28,6 +28,13 @@ Vue.prototype.$http = http
 Vue.prototype.$message = Message
 Vue.prototype.$lodash = lodash
 
+
+Vue.directive('title',{
+  inserted: function (el,binding) {
+    document.title = el.dataset.title
+  }
+})
+
 new Vue({
   router,
   store,

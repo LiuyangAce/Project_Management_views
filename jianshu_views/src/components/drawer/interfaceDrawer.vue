@@ -14,8 +14,10 @@
         :column="4"
         border
       >
+      {{isBackendDev}}
         <template slot="extra">
           <el-button
+            :disabled="!isBackendDev"
             v-if="!isEdit"
             type="primary"
             size="small"
@@ -163,6 +165,10 @@ export default {
         return {}
       },
     },
+    isBackendDev: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

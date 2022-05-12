@@ -1,5 +1,5 @@
 <template>
-  <div class="interfaceClass">
+  <div class="interfaceClass" v-title data-title= '接口管理'>
     <TablePage
       ref="allInterface"
       :tableData="tableData"
@@ -10,13 +10,14 @@
       @handleCurrentChange="handleCurrentChange"
       @handleSizeChange="handleSizeChange"
       @showUpdateDialogForm="showUpdateDialogForm"
+      :isBackendDev="isBackendDev"
       :interface = "true"
     >
     </TablePage>
     <div v-if="showDrawer">
-      <InterfaceDrawer :form="form" ref="drawer"></InterfaceDrawer>
+      <InterfaceDrawer :form="form" ref="drawer" :isBackendDev="isBackendDev"></InterfaceDrawer>
     </div>
-    <el-button @click="addInterfaceHandle">快速新增接口</el-button>
+    <el-button @click="addInterfaceHandle" :disabled=!isBackendDev>快速新增接口</el-button>
   </div>
 </template>
 
@@ -154,9 +155,9 @@ export default {
       this.getAllInterface()
     },
     showUpdateDialogForm(row) {
-      if (!this.isBackendDev) {
-        return false
-      } else {
+      // if (!this.isBackendDev) {
+      //   return false
+      // } else {
         this.showDrawer = true
         this.$nextTick(() => {
           // 打开弹窗
@@ -164,7 +165,7 @@ export default {
           // 传数据
           this.form = this.$lodash.cloneDeep(row)
         })
-      }
+      // }
     },
   },
 }

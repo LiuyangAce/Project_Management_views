@@ -51,8 +51,8 @@ export default {
         }
         this.$http(option)
           .then((res) => {
-            console.log(res)
-            this.option.series[0].data[0].value = (res.data.finishDefect / res.data.total)*100
+            console.log(111111111,res)
+            this.option.series[0].data[0].value = ((res.data.finishDefect / res.data.total).toFixed(2)) *100
             resolve()
           })
           .catch((err) => {

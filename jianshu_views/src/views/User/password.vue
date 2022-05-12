@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-title data-title="个人信息">
     <el-row>
       <el-col :span="24">
         <el-card>
@@ -28,12 +28,17 @@
             :append-to-body="true"
             @close="dialogFormHandler((type = 'init'))"
           >
-            <el-form :model="form">
+            <el-form :model="form" label-position="top">
               <el-form-item label="用户名">
                 <el-input v-model="form.username" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item label="性别">
-                <el-input v-model="form.sex" autocomplete="off"></el-input>
+                <el-select
+                  v-model="form.sex"
+                >
+                  <el-option label="男" value="男"></el-option>
+                  <el-option label="女" value="女"></el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="电话">
                 <el-input v-model="form.phone" autocomplete="off"></el-input>
@@ -60,7 +65,13 @@
                 "
               >
                 <div slot="header" class="clearfix" style="text-align: center">
-                  <span>修改头像</span>
+                  <div>头像</div>
+                  <!-- <img
+                    src="@/assets/logo.png"
+                    alt=""
+                    style="width: 150px; height: 150px"
+                  /> -->
+                  <el-avatar :size=80 src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
                 </div>
               </el-card>
             </el-col>

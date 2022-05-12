@@ -1,5 +1,5 @@
 <template>
-  <div class="loginBg">
+  <div class="loginBg" v-title data-title= '用户登录'>
     <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
       <img
         src="https://www.madpecker.com/system/static/main/logo.png"
@@ -14,7 +14,7 @@
               <el-input v-model="formLogin.username"></el-input>
             </el-form-item>
             <el-form-item label="密码:">
-              <el-input v-model="formLogin.pwd"></el-input>
+              <el-input show-password v-model="formLogin.pwd"></el-input>
             </el-form-item>
             <el-button @click="loginHandler">登录</el-button>
           </el-form>
@@ -27,10 +27,10 @@
               <el-input v-model="formReg.username"></el-input>
             </el-form-item>
             <el-form-item label="密码:" prop="pwd">
-              <el-input v-model="formReg.pwd"></el-input>
+              <el-input show-password v-model="formReg.pwd"></el-input>
             </el-form-item>
             <el-form-item label="确认密码:" prop="checkPwd">
-              <el-input v-model="formReg.checkPwd"></el-input>
+              <el-input show-password v-model="formReg.checkPwd"></el-input>
             </el-form-item>
             <el-button @click="regHandler">注册</el-button>
           </el-form>

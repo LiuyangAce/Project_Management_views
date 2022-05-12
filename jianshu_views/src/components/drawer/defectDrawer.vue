@@ -9,7 +9,18 @@
     <div class="demo-drawer__content">
       <el-form :model="form" label-position="left" label-width="80px">
         <el-form-item label="缺陷名称:">
-          <el-input v-model="form.defectName" autocomplete="off"></el-input>
+          <el-tooltip
+            :content="
+              !typeAbled ? '只有创建人才能修改缺陷名称' : '可以修改缺陷名称'
+            "
+            placement="top"
+          >
+            <el-input
+              :disabled="!typeAbled"
+              v-model="form.defectName"
+              autocomplete="off"
+            ></el-input>
+          </el-tooltip>
         </el-form-item>
         <el-form-item label="创建人:">
           <el-input
@@ -19,21 +30,36 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="执行人:">
-          <el-select
-            v-model="form.owner"
-            placeholder="请选择缺陷类型"
-            @click.native="getOwnerList()"
+          <el-tooltip
+            :content="
+              !typeAbled ? '只有创建人才能修改执行人' : '可以修改执行人'
+            "
+            placement="top"
           >
-            <el-option
-              v-for="item in ownerList"
-              :label="item.username"
-              :value="item.username"
-              :key="item._id"
-            ></el-option>
-          </el-select>
+            <el-select
+              v-model="form.owner"
+              placeholder="请选择缺陷类型"
+              @click.native="getOwnerList()"
+              :disabled="!typeAbled"
+            >
+              <el-option
+                v-for="item in ownerList"
+                :label="item.username"
+                :value="item.username"
+                :key="item._id"
+              ></el-option>
+            </el-select>
+          </el-tooltip>
         </el-form-item>
         <el-form-item label="缺陷描述">
-          <el-input type="textarea" v-model="form.desc"></el-input>
+          <el-tooltip
+            :content="
+              !typeAbled ? '只有创建人才能修改缺陷描述' : '可以修改缺陷描述'
+            "
+            placement="top"
+          >
+            <el-input :disabled="!typeAbled" type="textarea" v-model="form.desc"></el-input>
+          </el-tooltip>
         </el-form-item>
         <el-form-item label="状态:">
           <el-tooltip
@@ -66,8 +92,8 @@
               :disabled="!typeAbled"
             >
               <el-option label="low" value="low"></el-option>
-              <el-option label="mid" value="min"></el-option>
-              <el-option label="high" value="hign"></el-option>
+              <el-option label="mid" value="mid"></el-option>
+              <el-option label="high" value="high"></el-option>
             </el-select>
           </el-tooltip>
         </el-form-item>
@@ -111,6 +137,7 @@ export default {
           JSON.parse(window.localStorage.getItem('userInfo')).userInfo.username
       )
     },
+    // 创建人才能修改
     typeAbled: function () {
       return (
         this.form.creator ===
@@ -135,7 +162,10 @@ export default {
       this.$http(option)
         .then((res) => {
           console.log('查询成功', res)
-          this.ownerList = res.data
+          let ace = res.data.filter((element) => {
+            return element.type != '测试人员'
+          })
+          this.ownerList = ace
         })
         .catch((err) => {
           console.error('查询失败', err)

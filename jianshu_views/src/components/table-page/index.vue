@@ -88,6 +88,10 @@ export default {
       type: Number,
       default: 0,
     },
+    isBackendDev: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -113,7 +117,7 @@ export default {
       this.$emit('showUpdateDialogForm', row)
     },
     delDialog(row, column, event) {
-      if (!this.interface) {
+      if (!this.interface || !this.isBackendDev) {
         return false
       }else {
         event.preventDefault()

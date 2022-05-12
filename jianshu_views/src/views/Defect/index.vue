@@ -1,7 +1,11 @@
 <template>
-  <div class="defectView">
+  <div class="defectView" v-title data-title="缺陷管理">
     <!-- button -->
-    <el-button class="addDefectButton" @click="visibleHandle" :disabled="!addButtonAbled">
+    <el-button
+      class="addDefectButton"
+      @click="visibleHandle"
+      :disabled="!addButtonAbled"
+    >
       添加缺陷
     </el-button>
     <!-- dialog -->
@@ -40,11 +44,14 @@
         <el-form-item label="状态:">
           <el-input v-model="form.state" autocomplete="off" disabled></el-input>
         </el-form-item>
+        <el-form-item label="缺陷描述">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
         <el-form-item label="缺陷类型:">
           <el-select v-model="form.defectType" placeholder="请选择缺陷类型">
             <el-option label="low" value="low"></el-option>
-            <el-option label="mid" value="min"></el-option>
-            <el-option label="high" value="hign"></el-option>
+            <el-option label="mid" value="mid"></el-option>
+            <el-option label="high" value="high"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -56,18 +63,18 @@
     <!-- tabs -->
     <el-tabs v-model="activeName" type="card">
       <el-tab-pane ref="firstPane" label="所有缺陷" name="first">
-        <all-defect v-if="activeName === 'first'"></all-defect>
+        <all-defect ref="firstPane1" v-if="activeName === 'first'"></all-defect>
       </el-tab-pane>
       <el-tab-pane ref="secondPane" label="活动缺陷" name="second">
-        <active-defect v-if="activeName === 'second'"></active-defect>
+        <active-defect ref="secondPane1" v-if="activeName === 'second'"></active-defect>
       </el-tab-pane>
       <el-tab-pane ref="thirdPane" label="我创建的" name="third">
-        <my-defect v-if="activeName === 'third'"></my-defect>
+        <my-defect ref="thirdPane1" v-if="activeName === 'third'"></my-defect>
       </el-tab-pane>
       <el-tab-pane ref="fourthPane" label="我的代办" name="fourth">
-        <my-agent v-if="activeName === 'fourth'"></my-agent>
+        <my-agent ref="fourthPane1" v-if="activeName === 'fourth'"></my-agent>
       </el-tab-pane>
-      <el-tab-pane label="缺陷" name="fifth">缺陷</el-tab-pane>
+      <!-- <el-tab-pane label="缺陷" name="fifth">缺陷</el-tab-pane> -->
     </el-tabs>
   </div>
 </template>
@@ -95,6 +102,7 @@ export default {
         owner: '',
         state: '',
         defectType: '',
+        desc: '',
       },
       ownerList: [],
       dialogFormVisible: false,
@@ -102,8 +110,11 @@ export default {
   },
   computed: {
     addButtonAbled: function () {
-      return JSON.parse(window.localStorage.getItem('userInfo')).userInfo.type === '测试人员'
-    }
+      return (
+        JSON.parse(window.localStorage.getItem('userInfo')).userInfo.type ===
+        '测试人员'
+      )
+    },
   },
   created() {
     var date = new Date()
@@ -113,20 +124,17 @@ export default {
       (date.getMonth() + 1 < 10
         ? '0' + (date.getMonth() + 1)
         : date.getMonth() + 1) + '-'
-    let D = (date.getDate() < 10
-        ? '0' + date.getDate()
-        : date.getDate()) + ' '
-    let h = (date.getHours() == 0
+    let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
+    let h =
+      (date.getHours() == 0
         ? '0'
         : date.getHours() < 10
         ? '0' + date.getHours()
         : date.getHours()) + ':'
-    let m = (date.getMinutes() < 10
-        ? '0'+ date.getMinutes()
-        : date.getMinutes()) + ':'
-    let s = (date.getSeconds() < 10
-        ? '0' + date.getSeconds()
-        : date.getSeconds())
+    let m =
+      (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
+      ':'
+    let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
     console.log(Y + M + D + h + m + s)
     // debugger
   },
@@ -167,10 +175,9 @@ export default {
           console.error('修改个人信息失败', err)
         })
       this.dialogFormVisible = false
-      let temp = null
-      temp = this.activeName
-      this.activeName = null
-      this.activeName = temp
+
+      console.log(this.$refs[this.activeName + 'Pane1']);
+      this.$refs[this.activeName + 'Pane1'].getAllDefect()
     },
     // 获取owner列表
     getOwnerList() {

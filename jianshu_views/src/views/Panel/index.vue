@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel" v-title data-title= '敏捷面板'>
     <div class="top">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
