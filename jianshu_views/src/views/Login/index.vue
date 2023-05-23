@@ -1,12 +1,11 @@
 <template>
-  <div class="loginBg" v-title data-title= '用户登录'>
+  <div class="loginBg" v-title data-title="用户登录">
     <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
-      <img
-        src="https://www.madpecker.com/system/static/main/logo.png"
-        alt=""
-        width="200px"
-        height="50px"
-      />
+      <el-button type="primary" class="defaultLoginInfor" @click="openLoginInfoNotify"
+        >默认登录信息</el-button
+      >
+      <!-- src="https://www.madpecker.com/system/static/main/logo.png" -->
+      <img src="@/assets/MadPecker.png" alt="" width="200px" height="50px" />
       <el-tab-pane label="登录" name="login" class="login">
         <el-card class="loginCard">
           <el-form ref="formLogin" :model="formLogin">
@@ -83,6 +82,23 @@ export default {
   },
   created() {},
   methods: {
+    openLoginInfoNotify() {
+      this.$notify({
+        title: 'Login',
+        dangerouslyUseHTMLString: true,
+        message: (
+          <div>
+            <strong>用户名：</strong>
+            <div>测试人员 前端开发人员 后端开发人员</div>
+            <strong>密码：</strong>
+            <div>123456</div>
+          </div>
+        ),
+        type: 'success',
+        showClose: true,
+        offset: 50,
+      })
+    },
     handleClick(tab, event) {},
     loginHandler() {
       const option = {
@@ -97,7 +113,7 @@ export default {
           this.$message({
             message: '登陆成功',
             type: 'success',
-            duration: 500
+            duration: 500,
           })
           this.formLogin = {}
           Cookies.set('madpecker', res.token, { expires: 3 })
@@ -105,7 +121,7 @@ export default {
           this.$router.push({ name: 'User' })
         })
         .catch((err) => {
-          console.error('请求失败',err)
+          console.error('请求失败', err)
         })
     },
     regHandler() {
@@ -121,13 +137,13 @@ export default {
           this.$message({
             message: '注册成功',
             type: 'success',
-            duration: 500
+            duration: 500,
           })
           this.activeName = 'login'
           this.formReg = {}
         })
         .catch((err) => {
-          console.error('请求失败',err)
+          console.error('请求失败', err)
         })
     },
   },
@@ -135,8 +151,15 @@ export default {
 </script>
 
 <style scoped>
+.defaultLoginInfor {
+  background-color: #27b766;
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+}
 .loginBg {
-  background-image: url('https://www.madpecker.com/system/static/main/loginBg.png');
+  background-image: url('../../assets/loginBg.png');
+  /* background-image: url('https://www.madpecker.com/system/static/main/loginBg.png'); */
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
