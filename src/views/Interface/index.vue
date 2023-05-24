@@ -62,10 +62,16 @@ export default {
         {
           prop: 'createTime',
           label: '创建时间',
+          formatter: (row, column, cellValue) => {
+            return this.$globalUtils.formateDate(row.createTime)
+          },
         },
         {
           prop: 'endTime',
           label: '完成时间',
+          formatter: (row, column, cellValue) => {
+            return this.$globalUtils.formateDate(row.createTime)
+          },
         },
       ],
       pagination: {

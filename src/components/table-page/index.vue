@@ -17,6 +17,7 @@
         <!-- 双击点开抽屉 -->
         <el-table-column
           v-for="(item, index) in colConfigs"
+          :formatter="item.formatter || null"
           :key="index"
           :prop="item.prop"
           :label="item.label"

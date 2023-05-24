@@ -1,9 +1,8 @@
-function formateDate(oldDate) {
-  if (!oldDate) {
-    return null
-  }
-  
+export function formateDate (oldDate) {
+  // console.log(this.$dayjs);
+  console.log(this.$dayjs);
   var date = new Date(oldDate)
+  console.log(date)
   let Y = date.getFullYear() + '-'
   let M =
     (date.getMonth() + 1 < 10
@@ -14,13 +13,12 @@ function formateDate(oldDate) {
     (date.getHours() == 0
       ? '0'
       : date.getHours() < 10
-        ? '0' + date.getHours()
-        : date.getHours()) + ':'
+      ? '0' + date.getHours()
+      : date.getHours()) + ':'
   let m =
     (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
     ':'
   let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-  return (Y + M + D + h + m + s)
+  console.log(Y + M + D + h + m + s)
+  return 'Y + M + D + h + m + s'
 }
-
-export default formateDate

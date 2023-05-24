@@ -8,12 +8,15 @@ import http from './http'
 import { Message } from 'element-ui'
 import 'default-passive-events'
 import lodash from 'lodash'
+import dayjs from "dayjs";
+import globalUtils from './utils'
 
-// 使用 x-table
-import 'xe-utils'
-import VXETable from 'vxe-table'
-import 'vxe-table/lib/style.css'
-Vue.use(VXETable)
+// 全局注册过滤器
+import * as filters from '@/filter/index.js';
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+});
+
 
 import ViewLayout from './layout/viewLayout.vue'
 import DefaultLayout from './layout/defaultLayout.vue'
@@ -27,6 +30,8 @@ Vue.use(ElementUI)
 Vue.prototype.$http = http
 Vue.prototype.$message = Message
 Vue.prototype.$lodash = lodash
+Vue.prototype.$dayjs = dayjs
+Vue.prototype.$globalUtils = globalUtils
 
 
 Vue.directive('title',{

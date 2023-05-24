@@ -118,25 +118,7 @@ export default {
   },
   created() {
     var date = new Date()
-    console.log(date)
-    let Y = date.getFullYear() + '-'
-    let M =
-      (date.getMonth() + 1 < 10
-        ? '0' + (date.getMonth() + 1)
-        : date.getMonth() + 1) + '-'
-    let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
-    let h =
-      (date.getHours() == 0
-        ? '0'
-        : date.getHours() < 10
-        ? '0' + date.getHours()
-        : date.getHours()) + ':'
-    let m =
-      (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) +
-      ':'
-    let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    console.log(Y + M + D + h + m + s)
-    // debugger
+    console.log('当前时间:',this.$globalUtils.formateDate(date));
   },
   methods: {
     // 按钮 打开dialog

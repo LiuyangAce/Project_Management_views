@@ -152,7 +152,7 @@ export default {
 
 <style scoped>
 .defaultLoginInfor {
-  background-color: #27b766;
+  color: #27b766;
   display: inline-block;
   position: absolute;
   right: 20px;
