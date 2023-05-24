@@ -21,6 +21,7 @@
           :key="index"
           :prop="item.prop"
           :label="item.label"
+          :render-header="item.renderHeader || null"
           align="center"
           :show-overflow-tooltip="true"
         >

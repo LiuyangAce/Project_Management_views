@@ -22,10 +22,12 @@
 </template>
 
 <script>
+import enumComputed from '@/mixins/enum.js'
 import TablePage from '@/components/table-page'
 import InterfaceDrawer from '@/components/drawer/interfaceDrawer'
 import api from '@/api'
 export default {
+  mixins: [enumComputed],
   components: {
     TablePage,
     InterfaceDrawer,
@@ -54,6 +56,9 @@ export default {
         {
           prop: 'interfaceState',
           label: '状态',
+          formatter: (row, column, cellValue) => {
+            return (<el-tag type={this.enumForInterfaceState[row.interfaceState]}>{ row.interfaceState }</el-tag>)
+          },
         },
         {
           prop: 'creator',

@@ -18,10 +18,12 @@
   </div>
 </template>
 <script>
+import enumComputed from '@/mixins/enum.js'
 import TablePage from '@/components/table-page'
 import DefectDrawer from '@/components/drawer/defectDrawer'
 import api from '@/api'
 export default {
+  mixins: [enumComputed],
   components: {
     TablePage,
     DefectDrawer,
@@ -63,11 +65,17 @@ export default {
         {
           prop: 'state',
           label: '状态',
+          formatter: (row, column, cellValue) => {
+            return (<el-tag type={this.enumForState[row.state]}>{ row.state }</el-tag>)
+          },
         },
         {
           prop: 'defectType',
           label: '缺陷类型',
           customSlot: 'defectType',
+          formatter: (row, column, cellValue) => {
+            return (<el-tag type="info" style={ this.enumForDefectType[row.defectType]} >{ row.defectType }</el-tag>)
+          },
         },
       ],
       pagination: {
