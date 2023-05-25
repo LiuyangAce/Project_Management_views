@@ -118,7 +118,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // 改为hash模式
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
