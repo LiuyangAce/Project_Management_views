@@ -1,8 +1,8 @@
 <template>
   <div class="loginBg" v-title data-title="用户登录">
     <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
-      <el-button type="primary" class="defaultLoginInfor" @click="openLoginInfoNotify"
-        >默认登录信息</el-button
+      <span class="defaultLoginInfor" @click="openLoginInfoNotify"
+        >默认登录信息</span
       >
       <!-- src="https://www.madpecker.com/system/static/main/logo.png" -->
       <img src="@/assets/MadPecker.png" alt="" width="200px" height="50px" />
@@ -153,9 +153,10 @@ export default {
 <style scoped>
 .defaultLoginInfor {
   color: #27b766;
-  display: inline-block;
   position: absolute;
-  right: 20px;
+  right: 40px;
+  top: 30px;
+  cursor: pointer;
 }
 .loginBg {
   background-image: url('../../assets/loginBg.png');

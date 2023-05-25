@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 let instance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.VUE_APP_SERVER_URL,
   timeout: 5000,
 })
 
