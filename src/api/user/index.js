@@ -1,35 +1,35 @@
 export default {
   //用户登录
   USERS_LOGIN: {
-    path: 'http://localhost:3000/users/login',
+    path: '/users/login',
     method: 'post',
   },
   //用户注册
   USERS_REG: {
-    path: 'http://localhost:3000/users/reg',
+    path: '/users/reg',
     method: 'post'
   },
   // 获取当前用户信息
   GET_USER_INFO: {
-    path: 'http://localhost:3000/users/findOne',
+    path: '/users/findOne',
     method: 'post',
   },
   // 修改密码
   UPDATE_PWD: {
-    path: 'http://localhost:3000/users/updatePwd',
+    path: '/users/updatePwd',
     method: 'post',
   },
   // 修改个人信息
   UPDATE_PERSONAL: {
-    path: 'http://localhost:3000/users/update/personal',
+    path: '/users/update/personal',
     method: 'post'
   },
   FIND_USERS: {
-    path: 'http://localhost:3000/users/find',
+    path: '/users/find',
     method: 'get'
   },
   COMPONENT_USERS: {
-    path: 'http://localhost:3000/users/component',
+    path: '/users/component',
     method: 'get'
   }
   

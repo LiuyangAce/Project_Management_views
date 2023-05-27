@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      action: 'http://localhost:3000/upload/img/',
+      action: '/upload/img/',
       headers: {
         authorization:
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxpdXlhbmc0IiwiX2lkIjoiNjFlYjc3ODU1N2I5ZWE3YmYxNmMxMmYyIiwiaWF0IjoxNjQyOTkxMTcxLCJleHAiOjE2NDM1OTU5NzF9.R4cOd9hpoR8K_F5NsOz-enHaRbVo_Jfx4-AzW3igjYQ',

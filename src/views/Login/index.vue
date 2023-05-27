@@ -80,7 +80,9 @@ export default {
       },
     }
   },
-  created() {},
+  created() {
+    console.log('axios baseURL：',process.env.VUE_APP_SERVER_URL);
+  },
   methods: {
     openLoginInfoNotify() {
       this.$notify({
