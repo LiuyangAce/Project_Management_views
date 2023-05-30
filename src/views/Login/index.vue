@@ -21,7 +21,7 @@
       </el-tab-pane>
       <el-tab-pane label="注册" name="reg">
         <el-card class="regCard">
-          <el-form ref="formReg" :model="formReg" :rules="rules">
+          <el-form ref="formReg" label-position="top" :model="formReg" :rules="rules">
             <el-form-item label="用户名:" prop="username">
               <el-input v-model="formReg.username"></el-input>
             </el-form-item>
@@ -201,15 +201,16 @@ export default {
 }
 .loginCard,
 .regCard {
-  width: 420px;
+  /* width: 420px; */
+  width: 100%;
   height: 100%;
 }
 /deep/ .el-tabs--border-card {
   width: 25%;
   position: absolute;
   top: 50%;
-  margin-top: -250px;
-  right: 300px;
+  margin-top: -20%;
+  right: 10%;
 }
 /deep/ #tab-login {
   font-size: 18px;
