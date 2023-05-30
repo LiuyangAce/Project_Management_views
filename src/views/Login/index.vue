@@ -31,6 +31,16 @@
             <el-form-item label="确认密码:" prop="checkPwd">
               <el-input show-password v-model="formReg.checkPwd"></el-input>
             </el-form-item>
+            <el-form-item label="角色:" prop="type">
+              <el-select v-model="formReg.type" placeholder="请选择">
+                <el-option
+                  v-for="item in roleOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-form-item>
             <el-button @click="regHandler">注册</el-button>
           </el-form>
         </el-card>
@@ -72,7 +82,22 @@ export default {
         username: null,
         pwd: null,
         checkPwd: null,
+        type: '前端开发人员'
       },
+      roleOptions: [
+        {
+          label: '前端开发人员',
+          value: '前端开发人员'
+        },
+        {
+          label: '后端开发人员',
+          value: '后端开发人员'
+        },
+        {
+          label: '测试人员',
+          value: '测试人员'
+        },
+      ],
       activeName: 'login',
       rules: {
         pwd: [{ validator: validatePass, trigger: 'blur' }],
