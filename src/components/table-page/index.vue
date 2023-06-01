@@ -6,9 +6,8 @@
         :data="tableData"
         style="width: 100%"
         :header-cell-style="{
-          background: '#e9f7ec',
-          backdropFilter: 'blur(10px)',
-          color: '#27b766',
+
+          color: 'var(--color)',
         }"
         @row-dblclick="showUpdateDialogForm"
         @row-contextmenu="delDialog"

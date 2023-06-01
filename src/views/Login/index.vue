@@ -179,7 +179,7 @@ export default {
 
 <style scoped>
 .defaultLoginInfor {
-  color: #27b766;
+  color: var(--color);
   position: absolute;
   right: 40px;
   top: 30px;
@@ -214,10 +214,10 @@ export default {
 }
 /deep/ #tab-login {
   font-size: 18px;
-  color: #27b766;
+  color: var(--color);
 }
 /deep/ #tab-reg {
   font-size: 18px;
-  color: #27b766;
+  color: var(--color);
 }
 </style>

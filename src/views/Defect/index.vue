@@ -181,11 +181,11 @@ export default {
 </script>
 
 <style scoped>
-/deep/.el-tabs__item.is-active {
+/* /deep/.el-tabs__item.is-active {
   color: #27b766;
-}
+} */
 /deep/.el-tabs__item:hover {
-  color: #27b766;
+  /* color: #27b766; */
   cursor: pointer;
 }
 .defectView {
@@ -196,17 +196,17 @@ export default {
   position: absolute;
   right: 50px;
   z-index: 99;
-  color: #27b766;
+  color: var(--color);
 }
 </style>
 
 // 修改全局
 <style>
-.el-pagination.is-background .el-pager li:not(.disabled).active {
+/* .el-pagination.is-background .el-pager li:not(.disabled).active {
   background-color: #27b766;
   color: #fff;
 }
 .el-pagination.is-background .el-pager li:not(.disabled):hover {
   color: #27b766;
-}
+} */
 </style>

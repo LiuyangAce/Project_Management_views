@@ -72,7 +72,7 @@ export default {
 .el-container {
   height: calc(100% - 64px);
 }
-.el-menu-item:focus,
+/* .el-menu-item:focus,
 .el-menu-item:hover {
   color: #27b766;
   background-color: #e9f7ec;
@@ -80,5 +80,5 @@ export default {
 }
 .el-menu-item.is-active {
     color: #27b766;
-}
+} */
 </style>

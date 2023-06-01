@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="24">
         <el-card>
-          <div slot="header" class="headerCard" style="color: #27b766">
+          <div slot="header" class="headerCard" style="color:var(--color)">
             <span style="">个人资料</span>
             <span class="loginOutButton" @click="loginOutHandler"
               >退出登录</span
@@ -264,14 +264,14 @@ export default {
 <style>
 .el-button--primary {
   background-color: #e9f7ec;
-  border-color: #27b766;
-  color: #27b766;
+  border-color: var(--bgColor);
+  color: var(--color);
 }
 .el-button--primary:focus,
 .el-button--primary:hover {
   background-color: #e9f7ec;
-  border-color: #27b766;
-  color: #27b766;
+  border-color: var(--bgColor);
+  color: var(--color);
 }
 </style>
 
