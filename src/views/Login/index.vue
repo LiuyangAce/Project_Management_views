@@ -188,7 +188,8 @@ export default {
 .loginBg {
   background-image: url('../../assets/loginBg.png');
   /* background-image: url('https://www.madpecker.com/system/static/main/loginBg.png'); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
   height: 100%;
   width: 100%;
 }
@@ -203,14 +204,16 @@ export default {
 .regCard {
   /* width: 420px; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  height: 300px;
+  overflow-y: auto;
 }
 /deep/ .el-tabs--border-card {
   width: 25%;
   position: absolute;
   top: 50%;
-  margin-top: -20%;
   right: 10%;
+  transform: translate(10%,-50%);
 }
 /deep/ #tab-login {
   font-size: 18px;
