@@ -176,10 +176,10 @@ export default {
         dangerouslyUseHTMLString: true,
         message: (
           <div>
-            <strong>用户名：</strong>
-            <div>测试人员 前端开发人员 后端开发人员</div>
+            <strong>用户名(无权限)：</strong>
+            <div>1</div>
             <strong>密码：</strong>
-            <div>123456</div>
+            <div>1</div>
           </div>
         ),
         type: 'success',
